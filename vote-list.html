@@ -37,27 +37,27 @@
 
     <div class="item">
           <div class="content">
-            <a class="header">Election 2016</a> 
-            <div class="description">Elect your canidate now!</div> 
-          </div> 
-          <div class="right floated content"> 
-            <div class="ui radio checkbox"> 
-              <input type="radio" name="example2" checked="checked"> 
-              <label></label> 
-            </div> 
-          </div> 
+            <a class="header">Election 2016</a>
+            <div class="description">Elect your canidate now!</div>
+          </div>
+          <div class="right floated content">
+            <div class="ui radio checkbox">
+              <input type="radio" name="example2" checked="checked">
+              <label></label>
+            </div>
+          </div>
         </div>
      <div class="item">
           <div class="content">
-            <a class="header">Digitize Rewards</a> 
-            <div class="description">Digitize indian rewards for better usage!</div> 
+            <a class="header">Digitize Rewards</a>
+            <div class="description">Digitize indian rewards for better usage!</div>
           </div>
-          <div class="right floated content"> 
-            <div class="ui radio checkbox"> 
-              <input type="radio" name="example2"> 
-              <label></label> 
-            </div> 
-          </div>  
+          <div class="right floated content">
+            <div class="ui radio checkbox">
+              <input type="radio" name="example2">
+              <label></label>
+            </div>
+          </div>
         </div>
 
 
@@ -82,20 +82,18 @@
   <script src="js/semantic.min.js"></script>
   <script src="js/ui.js"></script>
   <script type="text/javascript">
-    
+
     jQuery(document).ready(function($) {
 
       var html = '';
 
     $.getJSON('json/elections.json', function(datas) {
 
-saveText(datas);
-
       jQuery.each(datas, function(index, item) {
         html += '<div class="item"> \
           <div class="content"> \
             <a class="header">'+item.name+'</a> \
-            <div class="description">'+item.descr+'</div> \
+            <div class="description">'+item.desc+'</div> \
           </div> \
           <div class="right floated content"> \
             <div class="ui radio checkbox"> \
@@ -115,11 +113,11 @@ saveText(datas);
       $('#uplVote').on("click", function() {
 
         $(this).prop('disabled', true);
- 
+
         setTimeout(function(){
             window.location = "vote-now.html";
           }, 500);
-        
+
       });
 
 
@@ -128,3 +126,4 @@ saveText(datas);
   </script>
 
 </body>
+</html>

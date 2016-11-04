@@ -38,28 +38,28 @@
     <div class="item">
       <img class="ui avatar image" src="images/can2.png">
           <div class="content">
-            <a class="header">PM John</a> 
-            <div class="description">UPJS</div> 
-          </div> 
-          <div class="right floated content"> 
-            <div class="ui radio checkbox"> 
-              <input type="radio" name="example2" checked="checked"> 
-              <label></label> 
-            </div> 
-          </div> 
+            <a class="header">PM John</a>
+            <div class="description">UPJS</div>
+          </div>
+          <div class="right floated content">
+            <div class="ui radio checkbox">
+              <input type="radio" name="example2" checked="checked">
+              <label></label>
+            </div>
+          </div>
         </div>
      <div class="item">
        <img class="ui avatar image" src="images/can1.jpg">
           <div class="content">
-            <a class="header">Aruna JS</a> 
-            <div class="description">PDJS</div> 
+            <a class="header">Aruna JS</a>
+            <div class="description">PDJS</div>
           </div>
-          <div class="right floated content"> 
-            <div class="ui radio checkbox"> 
-              <input type="radio" name="example2"> 
-              <label></label> 
-            </div> 
-          </div>  
+          <div class="right floated content">
+            <div class="ui radio checkbox">
+              <input type="radio" name="example2">
+              <label></label>
+            </div>
+          </div>
         </div>
 
     </div>
@@ -81,9 +81,14 @@
   </div>
   <script src="js/jquery.min.js"></script>
   <script src="js/semantic.min.js"></script>
-  <script src="js/ui.js"></script>
+  <script src="js/lightwallet.min.js"></script>
+  <script src="js/web3.js"></script>
+  <script src="js/hooked-web3-provider.js"></script>
+  <script src="js/async.js"></script>
+  <!-- <script src="js/ui.js"></script> -->
   <script type="text/javascript">
-    
+
+
     jQuery(document).ready(function($) {
 
     $.getJSON('json/canidates.json', function(datas) {
@@ -91,10 +96,10 @@
       var html = '';
       jQuery.each(datas, function(index, item) {
         html += '<div class="item"> \
+        <img class="ui avatar image" src="'+item.picture+'">\
           <div class="content"> \
-           <img class="ui avatar image" src="'+item.picture+'">\
             <a class="header">'+item.name+'</a> \
-            <div class="description">'+item.descr+'</div> \
+            <div class="description">'+item.desc+'</div> \
           </div> \
           <div class="right floated content"> \
             <div class="ui radio checkbox"> \
@@ -113,14 +118,16 @@
     $('#uplVoteNow').on("click", function() {
 
         $(this).prop('disabled', true);
- 
+
         setTimeout(function(){
             window.location = "thank-you.html";
           }, 500);
-        
+
       });
 
   });
+
+
 
   </script>
 

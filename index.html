@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register Here - Voting</title>
+  <link href="css/semantic.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <style type="text/css">
+  body{background-color:#DADADA;}
+  body>.grid{height:100%;}
+  .image{margin-top:-100px;}
+  .column{max-width:550px;}
+  .steps{display: none;}
+  .text { font-size: 1.2rem;}
+  div.ui.very.relaxed.divided.list { text-align: left; }
+  .fixed.bottom.menu { bottom: 0; top: auto;}
+  .container.footer {font-size: 0.9rem !important; padding: 10px 0;}
+  </style>
+
+</head>
+<body class="page page-default">
+
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+
+      <div id="stepone" class=" stepone">
+
+        <h2 class="ui massive header">
+          <div class="ui black huge header">Register Here</div>
+        </h2>
+
+        <form class="ui huge stackable form very padded segment blue" id="register">
+
+          <div class="field">
+            <input type="text" name="aadhaarno" placeholder="Aadhaar number" value="111111111111">
+          </div>
+          <div class="field">
+            <input class="ui massive input" type="text" name="dobuser" placeholder="Date of Birth YYYY/MM/DD" value="12/12/1988">
+          </div>
+
+          <button class="ui fluid green massive button" type="submit">Register now!</button>
+
+          <div class="ui divider hidden"></div>
+
+          <small>If you have already registered, you can <a id="skiptovote" href="#">Skip to Voting</a></small>
+
+          <!-- <div class="ui animated button" tabindex="0">
+            <div class="visible content">Horizontal</div>
+            <div class="hidden content">
+              Hidden
+            </div>
+          </div> -->
+
+
+          <div class="ui error message"></div>
+        </form>
+
+
+
+        <div class="ui fixed bottom menu">
+          <div class="ui text container footer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum beatae necessitatibus quam esse aliquam voluptatem, quis incidunt quia aspernatur.</div>
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/semantic.min.js"></script>
+
+</body>

@@ -89,6 +89,8 @@
 
     $.getJSON('json/elections.json', function(datas) {
 
+saveText(datas);
+
       jQuery.each(datas, function(index, item) {
         html += '<div class="item"> \
           <div class="content"> \

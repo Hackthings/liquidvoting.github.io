@@ -1,64 +1,74 @@
 
 jQuery(document).ready(function($) {
 
-  // jQuery('.dropdown').dropdown();
-
-  $.fn.api.settings.api = {
-    'quickregn': 'http://localhost:3000/quickregn',
+  var api = {
+    'quickregn': 'http://128.199.116.249:8888/register',
     'quicklogin' : 'http://localhost:3000/quicklogin'
   };
 
-  //$('#stepone').fadeIn().removeClass('steps');
-  // $('#steptwo').fadeIn().removeClass('steps');
-  // $('#stepthree').fadeIn().removeClass('steps');
-  // $('#stepfour').fadeIn().removeClass('steps');
 
-
-  $('#register')
-  .form({
-    fields: {
-      aadhaarno: {
-        identifier: 'aadhaarno',
-        rules: [{
-          type   : 'empty',
-          prompt : 'Please enter Aadhaar number'
-        },
-        {
-          type: 'regExp[/^[0-9]{12}$/]',
-          prompt: 'Please check the format'
-        }]
+  $( '#register' ).submit(function( event ) { 
+    
+    $.ajax({
+      method: "POST",
+      url: api.quickregn,
+      datatype : "json",
+      data: $( this ).serialize(),
+      beforeSend: function() {
+        $(this).find(".submit-button").prop('disabled', true).html("Registering......");
       },
-      dobuser: {
-        identifier : 'dobuser',
-        rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter your Date of Birth'
-          },
-          {
-            type: 'regExp[^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}$]',
-            prompt: 'Please check the format'
-          }
-        ]
-      }
-    }
-  })
-  .api({
-    method: 'POST',
-    action: 'quickregn',
-    // datatype: 'json',
-    // serializeForm: true,
-    response: function (response) {
-      $(this).find(".submit-button").prop('disabled', true).html("Registering......");
-      setTimeout(function(){
+      success: function(resultData) { 
         window.location = "vote-index.html";
-      }, 3000);
-    },
-    onSuccess: function (e, t) {
-      console.log(e);
-      console.log(t);
-    }
+        console.log( "Data Saved: " + msg );
+      },
+      error: function (jqXHR, textStatus, errorThrown){
+        console.log(  textStatus );
+      }
+    });
+   event.preventDefault();
   });
+
+
+  // $('#register')
+  // .form({
+  //   fields: {
+  //     aadhaarno: {
+  //       identifier: 'aadhaarno',
+  //       rules: [{
+  //         type   : 'empty',
+  //         prompt : 'Please enter Aadhaar number'
+  //       },
+  //       {
+  //         type: 'regExp[/^[0-9]{12}$/]',
+  //         prompt: 'Please check the format'
+  //       }]
+  //     },
+  //     dopass: {
+  //       identifier : 'dobuser',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Please enter a password'
+  //         }
+  //       ]
+  //     }
+  //   }
+  // })
+  // .api({
+  //   method: 'POST',
+  //   action: 'quickregn',
+  //   datatype: 'json',
+  //   //serializeForm: true,
+  //   response: function (response) {
+      
+  //   },
+  //   onSuccess: function (e, t) {
+  //    $(this).find(".submit-button").prop('disabled', true).html("Registering......");
+  //     // setTimeout(function(){
+  //     //   window.location = "vote-index.html";
+  //     // }, 3000);
+  //   }
+  // });
 
   $('#skiptovote').on('click', function() {
     window.document.title = 'Okay, let\'s move on';
@@ -128,9 +138,15 @@ jQuery(document).ready(function($) {
     setTimeout(function(){
         window.location = "vote-list.html";
       }, 3000);
-    
+
   });
 
 });
 
 
+function saveText(text, filename){
+  var a = document.createElement('a');
+  a.setAttribute('href', 'data:text/json;charset=utf-u,'+encodeURIComponent(JSON.stringify(text)));
+  a.setAttribute('download', filename);
+  a.click()
+}

@@ -32,13 +32,14 @@
     <div class="ui black huge header">Register Here</div>
   </h2>
 
-  <form class="ui huge stackable form very padded segment blue" id="register">
+  <form class="ui huge stackable form very padded segment blue" id="register" method="post">
 
     <div class="field">
-      <input type="text" name="aadhaarno" placeholder="Aadhaar number" value="111111111111">
+      <input type="text" name="aadhar_id" placeholder="Aadhaar number" value="111111111111">
     </div>
+
     <div class="field">
-      <input class="ui massive input" type="text" name="dobuser" placeholder="Date of Birth YYYY/MM/DD" value="12/12/1988">
+      <input class="ui massive input" type="password" name="pass" placeholder="Password" required="required" value="123" />
     </div>
 
     <div class="field">
@@ -46,7 +47,7 @@
         <i class="fa fa-upload" aria-hidden="true"></i>
         Upload Fingerprint
       </label>
-      <input type="file" id="hidden-new-file" style="display: none">
+      <input type="file" id="hidden-new-file" name="file" style="display: none">
     </div>
 
     <button class="ui fluid green massive button submit-button" type="submit">Register now!</button>

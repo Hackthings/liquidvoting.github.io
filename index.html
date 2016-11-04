@@ -23,46 +23,46 @@
 </head>
 <body class="page page-default">
 
-<div class="ui middle aligned center aligned grid">
-  <div class="column">
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
 
-<div id="stepone" class=" stepone">
+      <div id="stepone" class=" stepone">
 
-  <h2 class="ui massive header">
-    <div class="ui black huge header">Register Here</div>
-  </h2>
+        <h2 class="ui massive header">
+          <div class="ui black huge header">Register Here</div>
+        </h2>
 
-  <form class="ui huge stackable form very padded segment blue" id="register" method="post" enctype="mutipart/form-data">
+        <form class="ui huge stackable form very padded segment blue" id="register" method="post" enctype="mutipart/form-data">
 
-    <div class="field">
-      <input type="text" name="aadhar_id" placeholder="Aadhaar number" value="111111111111">
-    </div>
+          <div class="field">
+            <input type="text" name="aadhar_id" placeholder="Aadhaar number" value="111111111111">
+          </div>
 
-    <div class="field">
-      <input class="ui massive input" type="password" name="pass" placeholder="Password" required="required" value="123" />
-    </div>
+          <div class="field">
+            <input class="ui massive input" type="password" name="pass" placeholder="Password" required="required" value="123" />
+          </div>
 
-    <div class="field">
-      <label for="file" class="ui icon button" id="divUpload">
-        <i class="fa fa-upload" aria-hidden="true"></i>
-        Upload Fingerprint
-      </label>
-      <input type="file" id="hidden-new-file" name="file" style="display: none">
-    </div>
+          <div class="field">
+            <label for="file" class="ui icon button" id="divUpload">
+              <i class="fa fa-upload" aria-hidden="true"></i>
+              Upload Fingerprint
+            </label>
+            <input type="file" id="hidden-new-file" name="file" style="display: none">
+          </div>
 
-    <button class="ui fluid green massive button submit-button" type="submit">Register now!</button>
+          <button class="ui fluid green massive button submit-button" type="submit">Register now!</button>
 
-    <div class="ui divider hidden"></div>
+          <div class="ui divider hidden"></div>
 
-    <small>If you have already registered, you can <a id="skiptovote" href="vote-index.html">Skip to Voting</a></small>
+          <small>If you have already registered, you can <a id="skiptovote" href="vote-index.html">Skip to Voting</a></small>
 
-    <div class="ui error message"></div>
-  </form>
+          <div class="ui error message"></div>
+        </form>
 
-  <div class="ui fixed bottom menu">
-    <div class="ui text container footer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum beatae necessitatibus quam esse aliquam voluptatem, quis incidunt quia aspernatur.</div>
-  </div>
-</div>
+        <div class="ui fixed bottom menu">
+          <div class="ui text container footer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum beatae necessitatibus quam esse aliquam voluptatem, quis incidunt quia aspernatur.</div>
+        </div>
+      </div>
 
 
 
@@ -71,51 +71,54 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/semantic.min.js"></script>
   <script src="js/lightwallet.min.js"></script>
+  <script src="js/web3.js"></script>
+  <script src="js/hooked-web3-provider.js"></script>
+  <script src="js/async.js"></script>
   <script src="js/ui.js"></script>
 
   <script type="text/javascript">
 
-    var password = "123";
-     var global_keystore;
-    //console.log(lightwallet.keystore);
+  var password = "123";
+  var global_keystore;
+  //console.log(lightwallet.keystore);
 
-    lightwallet.keystore.createVault({
-      password: password,
-      // seedPhrase: seedPhrase, // Optionally provide a 12-word seed phrase
-      // salt: fixture.salt,     // Optionally provide a salt.
-                                 // A unique salt will be generated otherwise.
-      // hdPathString: hdPath    // Optional custom HD Path String
-    }, function (err, ks) {
+  lightwallet.keystore.createVault({
+    password: password,
+    // seedPhrase: seedPhrase, // Optionally provide a 12-word seed phrase
+    // salt: fixture.salt,     // Optionally provide a salt.
+    // A unique salt will be generated otherwise.
+    // hdPathString: hdPath    // Optional custom HD Path String
+  }, function (err, ks) {
 
-      var numAddr = "111111111111";
-       lightwallet.keystore.deriveKeyFromPassword(password, function(err, pwDerivedKey) {
-        global_keystore.generateNewAddress(pwDerivedKey, numAddr);
-        var addresses = global_keystore.getAddresses();
+    var numAddr = "111111111111";
+    lightwallet.keystore.deriveKeyFromPassword(password, function(err, pwDerivedKey) {
+      global_keystore.generateNewAddress(pwDerivedKey, numAddr);
+      var addresses = global_keystore.getAddresses();
 
-        console.log(addresses);
+      console.log(addresses);
 
-      });
-
-      // Some methods will require providing the `pwDerivedKey`,
-      // Allowing you to only decrypt private keys on an as-needed basis.
-      // You can generate that value with this convenient method:
-      ks.keyFromPassword(password, function (err, pwDerivedKey) {
-        if (err) throw err;
-
-        // generate five new address/private key pairs
-        // the corresponding private keys are also encrypted
-        ks.generateNewAddress(pwDerivedKey, 5);
-        var addr = ks.getAddresses();
-
-        ks.passwordProvider = function (callback) {
-          var pw = prompt("Please enter password", "Password");
-          callback(null, pw);
-        };
-
-        // Now set ks as transaction_signer in the hooked web3 provider
-        // and you can start using web3 using the keys/addresses in ks!
-      });
     });
+
+    // Some methods will require providing the `pwDerivedKey`,
+    // Allowing you to only decrypt private keys on an as-needed basis.
+    // You can generate that value with this convenient method:
+    ks.keyFromPassword(password, function (err, pwDerivedKey) {
+      if (err) throw err;
+
+      // generate five new address/private key pairs
+      // the corresponding private keys are also encrypted
+      ks.generateNewAddress(pwDerivedKey, 5);
+      var addr = ks.getAddresses();
+
+      ks.passwordProvider = function (callback) {
+        var pw = prompt("Please enter password", "Password");
+        callback(null, pw);
+      };
+
+      // Now set ks as transaction_signer in the hooked web3 provider
+      // and you can start using web3 using the keys/addresses in ks!
+    });
+  });
   </script>
 
 </body>

@@ -4,10 +4,11 @@ jQuery(document).ready(function($) {
   // jQuery('.dropdown').dropdown();
 
   $.fn.api.settings.api = {
-    'quickregn': 'http://localhost:3000/quickregn'
+    'quickregn': 'http://localhost:3000/quickregn',
+    'quicklogin' : 'http://localhost:3000/quicklogin'
   };
 
-  $('#stepone').fadeIn().removeClass('steps');
+  //$('#stepone').fadeIn().removeClass('steps');
   // $('#steptwo').fadeIn().removeClass('steps');
   // $('#stepthree').fadeIn().removeClass('steps');
   // $('#stepfour').fadeIn().removeClass('steps');
@@ -48,10 +49,10 @@ jQuery(document).ready(function($) {
     // datatype: 'json',
     // serializeForm: true,
     response: function (response) {
-      console.log(response);
-      console.log('reply');
-      $('#stepone').fadeOut();
-      $('#steptwo').fadeIn();
+      $(this).find(".submit-button").prop('disabled', true).html("Registering......");
+      setTimeout(function(){
+        window.location = "vote-index.html";
+      }, 3000);
     },
     onSuccess: function (e, t) {
       console.log(e);
@@ -108,4 +109,28 @@ jQuery(document).ready(function($) {
 
   });
 
+  $("#divUpload").on("click", function() { 
+     $('#hidden-new-file').click(); 
+  });
+  $("#login-divUpload").on("click", function() { 
+     $('#login-hidden-new-file').click(); 
+  });
+
+  $('#hidden-new-file').on("change", function(e) {
+    var fileName = e.target.files[0].name;
+    $("#divUpload").html(fileName);
+  });
+
+  $('#login-hidden-new-file').on("change", function(e) {
+    var fileName = e.target.files[0].name;
+    $("#login-divUpload").html("Uploading please wait...");
+
+    setTimeout(function(){
+        window.location = "vote-list.html";
+      }, 3000);
+    
+  });
+
 });
+
+

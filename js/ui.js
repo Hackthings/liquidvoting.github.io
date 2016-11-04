@@ -13,8 +13,13 @@ jQuery(document).ready(function($) {
       method: "POST",
       url: api.quickregn,
       datatype : "json",
-      data: $( this ).serialize(),
-      beforeSend: function() {
+      crossDomain: true,
+      data: JSON.stringify($( this ).serialize()),
+      contentType: "application/json",
+      beforeSend: function(request) {
+       // request.setRequestHeader("Content-Type", "application/json; charset=utf8");
+       // request.setRequestHeader("Accept", "application/json");
+
         $(this).find(".submit-button").prop('disabled', true).html("Registering......");
       },
       success: function(resultData) { 

@@ -19,3 +19,12 @@ Corruption exist because of concentrating of power. Our solution brings that pow
 * Built on top of Blockchain
 * Elections are secured by Smart Contracts
 * Cost of infrastructure will be very less (~0.5%)
+
+## Screenshots
+![Liquid Voting Blockchain](screenshots/Screen Shot 2016-11-08 at 8.35.10 AM.png)
+
+![Liquid Voting Blockchain Registration](screenshots/Screen Shot 2016-11-08 at 8.35.25 AM.png)
+
+![Liquid Voting Blockchain Elections](screenshots/Screen Shot 2016-11-08 at 8.35.43 AM.png)
+
+![Liquid Voting Blockchain Voting](screenshots/Screen Shot 2016-11-08 at 8.35.55 AM.png)

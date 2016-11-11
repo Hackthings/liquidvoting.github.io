@@ -1,5 +1,20 @@
 var web3 = new Web3();
 var global_keystore;
+
+var eth_node_url = 'http://128.199.116.249:8545';
+web3.setProvider(new web3.providers.HttpProvider(eth_node_url));
+var connected = false;
+
+if(!web3.isConnected()) {
+  $('.ui.basic.modal')
+  .modal({
+    blurring: true
+  })
+  .modal('show')
+;
+}
+
+
 function setWeb3Provider(keystore) {
   var web3Provider = new HookedWeb3Provider({
     host: "http://128.199.116.249:8545",
